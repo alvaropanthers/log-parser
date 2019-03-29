@@ -1,0 +1,51 @@
+-Make a program that parses auth.log and displays the information clearly in a interface.
+-The interface will be a html document that uses javascript and html to display this information.
+
+-Information about auth.log
+	     -File location: /var/log/auth.log
+	     -All authentication related events in Debian and Ubuntu server are logged here.
+	     -If you're looking for anything involving the user authorization mechanism,
+	     you can find it in this log file.
+	     -Useful for:
+	     	     -Investigating failed login attempts
+		     	 -Investigating brute-force attacks and other vulnerabilities related to
+				  user authorization mechanism.
+
+
+WHEN USER IS VALID: Feb 25 07:03:52 dailyprog sshd[12430]: Failed password for postgres from 213.234.26.179 port 53065 ssh2
+WHEN USER IS INVALID: Feb 25 07:08:16 dailyprog sshd[12636]: Failed password for invalid user vk from 140.143.93.31 port 57698
+
+Feb 25  <- GET
+07:03:52  <- GET
+dailyprog 
+sshd[12430]: <- GET
+Failed 
+password 
+for 
+postgres <- GET
+from 
+213.234.26.179 <- GET
+port 
+53065 <- GET
+ssh2
+
+Feb
+25
+09:05:43
+dailyprog
+sshd[19569]:
+Invalid
+user
+rx
+from
+14.18.100.90
+port
+
+this line causes an error:
+Feb 25 08:55:05 dailyprog sshd[18944]: Invalid user user from 217.61.14.223 port 60092
+
+ip: 217.61.14.223; valid user: True;
+users:
+from, (port: 60092)
+test, (port: 33184)
+teste, (port: 59054)
