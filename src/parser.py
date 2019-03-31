@@ -43,11 +43,10 @@ def parse_file(file):
                 
         if user and ip and port and month and day and time:
             encounter = False
-            if len(found) > 0:
-                for item in found:
-                    if item.ip == ip:
-                        item.users.append(User(user, port, Date(month, day, time), invalid_user))
-                        encounter = True
+            for item in found:
+                if item.ip == ip:
+                    item.users.append(User(user, port, Date(month, day, time), invalid_user))
+                    encounter = True
 
             if not encounter:
                 found.append(Log(User(user, port, Date(month, day, time), invalid_user), ip))
