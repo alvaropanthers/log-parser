@@ -11,41 +11,8 @@
 		     	 -Investigating brute-force attacks and other vulnerabilities related to
 				  user authorization mechanism.
 
+Feb 25 07:03:52 dailyprog sshd[12430]: Failed password for postgres from 213.234.26.179 port 53065 ssh2
+Feb 25 07:08:16 dailyprog sshd[12636]: Failed password for invalid user vk from 140.143.93.31 port 57698
 
-WHEN USER IS VALID: Feb 25 07:03:52 dailyprog sshd[12430]: Failed password for postgres from 213.234.26.179 port 53065 ssh2
-WHEN USER IS INVALID: Feb 25 07:08:16 dailyprog sshd[12636]: Failed password for invalid user vk from 140.143.93.31 port 57698
-
-Feb 25  <- GET
-07:03:52  <- GET
-dailyprog 
-sshd[12430]: <- GET
-Failed 
-password 
-for 
-postgres <- GET
-from 
-213.234.26.179 <- GET
-port 
-53065 <- GET
-ssh2
-
-Feb
-25
-09:05:43
-dailyprog
-sshd[19569]:
-Invalid
-user
-rx
-from
-14.18.100.90
-port
-
-this line causes an error:
-Feb 25 08:55:05 dailyprog sshd[18944]: Invalid user user from 217.61.14.223 port 60092
-
-ip: 217.61.14.223; valid user: True;
-users:
-from, (port: 60092)
-test, (port: 33184)
-teste, (port: 59054)
+Feb 25 09:05:42 dailyprog sshd[19567]: Failed password for invalid user teste from 217.61.14.223 port 59054 ssh2
+Feb 25 08:55:07 dailyprog sshd[18944]: Failed password for invalid user user from 217.61.14.223 port 60092 ssh2
