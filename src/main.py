@@ -1,13 +1,13 @@
 import sys
-from parser import get_data
+from parser import parse_file
 
-file_path = "/var/log/auth.log"
+DEFAULT_FILE_PATH = "/var/log/auth.log"
 
 if len(sys.argv) > 1:
-    file_path = sys.argv[1]
+    DEFAULT_FILE_PATH = sys.argv[1]
 
-with open(file_path, 'r') as f:
-    objs = get_data(f)
+with open(DEFAULT_FILE_PATH, 'r') as f:
+    objs = parse_file(f)
 
 for obj in objs:
     obj.print()

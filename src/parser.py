@@ -6,7 +6,7 @@ MONTH_SPACE_INDEX = 0
 DAY_SPACE_INDEX = 1
 TIME_SPACE_INDEX = 2
 
-def get_data(file):
+def parse_file(file):
     found = []
     for line in file:
         start = whsp_count =  0
@@ -17,8 +17,6 @@ def get_data(file):
             currentline = line[start:index]
             if  currentline == 'Failed':
                 contains = True
-            elif currentline == 'invalid':
-                invalid_user = True
 
             if char == ' ':
                 if not month and whsp_count == MONTH_SPACE_INDEX:
@@ -29,7 +27,11 @@ def get_data(file):
                     time = currentline
                 
                 if contains and not user and (prevline == 'user' or (prevline == 'for' and currentline != 'invalid')):
-	                user = currentline
+                    if prevline == 'for':
+                        invalid_user = False
+                    else:
+                        invalid_user = True
+                    user = currentline
                 elif contains  and not ip and prevline == 'from':
                     ip = currentline
                 elif contains and not port and prevline == 'port':
@@ -39,16 +41,15 @@ def get_data(file):
                 start = index + 1
                 whsp_count += 1
                 
-        if user and ip and port:
+        if user and ip and port and month and day and time:
             encounter = False
             if len(found) > 0:
                 for item in found:
                     if item.ip == ip:
-                        if user and port:
-                            item.users.append(User(user, port, Date(month, day, time)))
-                            encounter = True
+                        item.users.append(User(user, port, Date(month, day, time), invalid_user))
+                        encounter = True
 
-            if not encounter and user and port and ip:
-                found.append(Log(User(user, port, Date(month, day, time)), ip, invalid_user))
+            if not encounter:
+                found.append(Log(User(user, port, Date(month, day, time), invalid_user), ip))
 
     return found
