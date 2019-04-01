@@ -8,15 +8,16 @@ def break_string(string, delimiter):
     
     return items
 
-def parse_file(file, delimiter):
+def parse_file(file, delimiter, call_back):
     found = []
     for line in file:
-        found.append(break_string(line, delimiter))
+        sttr = break_string(line, delimiter)
+        found.append(call_back(sttr))
 
     return found
 
-def parse(path, delimiter):
+def parse(path, delimiter, call_back):
     with open(path, 'r') as f:
-        items = parse_file(f, delimiter)
+        items = parse_file(f, delimiter, call_back)
 
     return items

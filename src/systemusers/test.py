@@ -7,29 +7,12 @@ DEFAULT_FILE_PATH = "/etc/passwd"
 if len(sys.argv) > 1:
     DEFAULT_FILE_PATH = sys.argv[1]
 
-objs = parse(DEFAULT_FILE_PATH, ':')
+def call_back(buff):
+    return User(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5], buff[6])
 
-users = []
-for item in objs:
-    username = password = uid = gid = gecos = hmdir = logshell = ''
-    for index, cuser in enumerate(item):
-        if index == 0:
-            username = cuser
-        elif index == 1:
-            password = cuser
-        elif index == 2:
-            uid = cuser
-        elif index == 3:
-            gid = cuser
-        elif index == 4:
-            gecos = cuser
-        elif index == 5:
-            hmdir = cuser
-        elif index == 6:
-            logshell = cuser
-    users.append(User(username, password, uid, gid, gecos, hmdir, logshell))
+objs = parse(DEFAULT_FILE_PATH, ':', call_back)
 
-for user in users:
+for user in objs:
     print(user)
 
-print(f"{len(users)} objects found")
+print(f"{len(objs)} objects found")
