@@ -1,15 +1,11 @@
 import sys
-from authlog.auth import parse_file
+import argparse
+from authlog import AuthLog
 
-DEFAULT_FILE_PATH = "auth.log"
-
-if len(sys.argv) > 1:
-    DEFAULT_FILE_PATH = sys.argv[1]
-
-data = parse_file(DEFAULT_FILE_PATH)
-
-if data:
-    for item in data:
-        item.print()
-else:
-    print("No data loaded")
+if __name__ == '__main__':
+    parse = argparse.ArgumentParser(description="Parse Authlog file")
+    parse.add_argument('--path', help="Path to Auth.log", default="auth.log")
+    args = parse.parse_args()
+    authLog = AuthLog(args.path)
+    authLog.print_log()
+    
