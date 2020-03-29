@@ -1,7 +1,7 @@
 import sys
 from authlog.auth import parse_file
 
-DEFAULT_FILE_PATH = "/var/log/auth.log"
+DEFAULT_FILE_PATH = "auth.log"
 
 if len(sys.argv) > 1:
     DEFAULT_FILE_PATH = sys.argv[1]

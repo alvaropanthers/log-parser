@@ -4,6 +4,9 @@ from modules.log import Log
 from modules.user import User
 
 def call_back(line, data):
+    if len(line) == 0:
+        return None
+
     ip = username = port =  ''
     validuser = False
     returnNew = True
@@ -33,4 +36,4 @@ def call_back(line, data):
     return None
 
 def parse_file(fileName):
-    return parse(fileName, ' ', call_back, True)
+    return parse(fileName, call_back)
